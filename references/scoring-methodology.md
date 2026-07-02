@@ -13,6 +13,22 @@ This document outlines the strict mathematical and analytical guidelines used by
   - **Protocol/Standard Absence (-1.5 points total):** Deduct if no explicit industry standards, RFCs, or technical protocols are named (e.g., TLS 1.3, HTTP/2, ISO 27001).
 - **Floor:** 0.0
 
+### Examples:
+```
+Text: "Our platform is extremely fast and secure."
+→ "extremely" = subjective intensifier (-2.0)
+→ "fast" = subjective adjective without metrics (-2.0)
+→ "secure" = subjective claim without proof (-2.0)
+→ Score: 10.0 - 2.0 - 2.0 - 2.0 = 4.0
+
+Text: "API latency averages 45ms under 99.9th percentile load."
+→ No subjective words (0 deductions)
+→ No long sentences (0 deductions)
+→ Numerical metrics present: 45ms, 99.9th (0 deductions)
+→ Standard mentioned: percentile (0 deductions)
+→ Score: 10.0
+```
+
 ---
 
 ## 2. Factual Extraction Score (FES)
@@ -24,6 +40,14 @@ This document outlines the strict mathematical and analytical guidelines used by
   - **Paragraph Chunking (+2.0 points):** Added if all paragraphs are under 150 words (optimal RAG chunk size).
 - **Ceiling:** 10.0
 
+### Examples:
+```
+- Table of API endpoints present: +3.0
+- All paragraphs under 150 words: +2.0
+- No ambiguous pronouns ("it", "they", "our system" without context): +2.0
+- Labeled "Technical Specifications" section present: +3.0
+```
+
 ---
 
 ## 3. Citation Probability Score (CPS)
@@ -34,10 +58,17 @@ This document outlines the strict mathematical and analytical guidelines used by
   - **Anchor Linking (+3.0 points):** Document has clear, linkable references or anchor targets for claims.
 - **Ceiling:** 10.0
 
+### Examples:
+```
+- Comparative text: "X processes 10K req/s vs Y's 3K req/s": +4.0
+- Authoritative citation: "According to NIST guidelines...": +3.0
+- Anchor link present: "#authentication": +3.0
+```
+
 ---
 
 ## 4. Confidence Intervals (Uncertainty Mapping)
-To account for LLM parser variability and RAG ingestion noise, the auditor computes a **95% Confidence Interval** for the scores:
+To account for LLM parser variability and RAG ingestion noise, the auditor computes a **95% Confidence Interval`** for the scores:
 - **Lower Bound:** `Calculated Score - 0.8` (assumes potential chunking leakage)
 - **Upper Bound:** `MIN(Calculated Score + 0.5, 10.0)`
-- **Confidence Level:** Default to `95%` for frontier models; `90%` for local/smaller models.
+- **Confidence Level:** Default to `95%` for frontier models; use `90%` for non-frontier or smaller models by default if model capacity is unknown.

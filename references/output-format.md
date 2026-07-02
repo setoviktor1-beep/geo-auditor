@@ -1,5 +1,7 @@
 # GEO Auditor — Output Formats
 
+Jei modelis negali sugeneruoti validaus JSON, grąžinkite tik markdown code block su JSON struktūra. Jokio teksto už JSON bloko ribų.
+
 ## Standard Audit Output Schema (JSON)
 All audits must return this JSON structure. The `thought_process` object is mandatory and must show the exact step-by-step reasoning before outputting the results.
 
@@ -9,7 +11,8 @@ All audits must return this JSON structure. The `thought_process` object is mand
     "step_1_input_analysis": "string (Identify entities, technical terms, claims, missing schema)",
     "step_2_calculations": "string (Step-by-step arithmetic showing SDS, FES, CPS, COP calculation)",
     "step_3_optimization": "string (Step-by-step plan for optimizing text and metadata)",
-    "step_4_validation": "string (Verify JSON outputs against output-format.md key-by-key)"
+    "step_4_validation": "string (Verify JSON outputs against output-format.md key-by-key)",
+    "step_5_math_validation": "string (Patikrink ar SDS, FES, CPS skaičiavimai matematiškai teisingi)"
   },
   "audit_metadata": {
     "target_brand": "string",
@@ -31,7 +34,15 @@ All audits must return this JSON structure. The `thought_process` object is mand
   "scorecard_calculations": {
     "semantic_density_formula": "string",
     "factual_extraction_formula": "string",
-    "citation_probability_formula": "string"
+    "citation_probability_formula": "string",
+    "calculation_audit_trail": [
+      {
+        "rule_applied": "string",
+        "text_segment": "string",
+        "points_change": 0.0,
+        "running_total": 0.0
+      }
+    ]
   },
   "key_vulnerabilities": [
     {

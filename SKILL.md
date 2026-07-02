@@ -16,6 +16,8 @@ Optimize brand assets for AI-powered generative search engines (Perplexity, Gemi
 
 ## Core Principles
 
+- **Deterministic Scoring Principle**: All scores must be calculated based on mathematical formulas without any room for interpretation. The model must not "guess" — it must strictly execute the written rules.
+- **Model-Agnostic Validation**: Before returning the final result, a mathematical verification (Step 5) must be performed to guarantee consistency.
 - **Strict Algorithmic Metrics:** Focus exclusively on **semantic density**, **entity clarity**, **vector similarity**, and **LLM citation probability**. Never use subjective guesswork.
 - **Strict Non-SEO Policy:** Never give classic SEO advice (keywords, backlinks, H1 tags, etc.).
 - **Data over Marketing:** Prioritize structured data, factual assertions, numerical values, and clear entity-attribute relationships.
@@ -25,15 +27,17 @@ Optimize brand assets for AI-powered generative search engines (Perplexity, Gemi
 
 ## 1. Strict Chain-of-Thought (CoT) Reasoning Protocol
 
-You MUST execute the analysis in the following 4 sequential steps. You are forbidden from skipping any step. Before outputting the final JSON report, you must populate the `"thought_process"` JSON field with your exact reasoning for each step.
+You MUST execute the analysis in the following 5 sequential steps. You are forbidden from skipping any step. Before outputting the final JSON report, you must populate the `"thought_process"` JSON field with your exact reasoning for each step.
 
 ### Step 1: Input Entity Analysis
 - Parse `{{BRAND_DOCUMENTATION_OR_TEXT}}` and identify all unique subject entities, technical terms, and claims.
 - Identify missing Schema.org markup.
+- **Instruction:** List each identified subjective word, ambiguous pronoun, or long sentence (>25 words) with its exact text snippet and the specific reason for failure. Do not use generic descriptions — only exact text segments.
 - *Write your findings in `"thought_process.step_1_input_analysis"`.*
 
 ### Step 2: Algorithmic Scoring (Deterministic Formulas)
 You must compute scores using the formulas detailed in [references/scoring-methodology.md](references/scoring-methodology.md). Show your step-by-step arithmetic in `"thought_process.step_2_calculations"`.
+- **Instruction:** Write each deduction/addition in the following format: `'[Base] ± [Points] ([Reason]) = [Result]'`. Example: `'10.0 - 2.0 (subjective "rapid") = 8.0'`. The final score is the running total of the last line.
 
 #### A. Semantic Density Score (SDS)
 *Scale: 0.0 to 10.0. Start at 10.0. Deduct points for subjective adjectives, excessive sentence lengths, lack of metrics, or missing standards.*
@@ -57,6 +61,16 @@ You must compute scores using the formulas detailed in [references/scoring-metho
 - Verify that your JSON response matches the schema in `references/output-format.md` exactly.
 - *Write your findings in `"thought_process.step_4_validation"`.*
 
+### Step 5: Math Validation
+- Perform a manual verification of all arithmetic calculations. Confirm that:
+  - `Semantic Density Score` = 10.0 - sum of all deductions (minimum 0.0)
+  - `Factual Extraction Score` = 0.0 + sum of all additions (maximum 10.0)
+  - `Citation Probability Score` = 0.0 + sum of all additions (maximum 10.0)
+  - `Confidence Interval Lower Bound` = Score - 0.8
+  - `Confidence Interval Upper Bound` = MIN(Score + 0.5, 10.0)
+- If any calculation does not match, review Step 2 and correct the error before returning the output.
+- *Write your findings in `"thought_process.step_5_math_validation"`.*
+
 ---
 
 ## 2. Strict Negative Guardrails (Draudimai)
@@ -66,6 +80,7 @@ You must compute scores using the formulas detailed in [references/scoring-metho
 - **DO NOT** use subjective bias to round scores; follow the exact decimal results from the math equations.
 - **DO NOT** alter the keys of the JSON schema defined in `references/output-format.md`.
 - **DO NOT** use placeholders like `"TODO"`, `"N/A"`, or `"Not applicable"`. Every array and object must be fully completed.
+- **DO NOT** use fuzzy reasoning or "it seems" language in the `thought_process` fields. Every statement in the `thought_process` must reference a specific text segment or a specific scoring rule from `references/scoring-methodology.md`.
 
 ---
 
