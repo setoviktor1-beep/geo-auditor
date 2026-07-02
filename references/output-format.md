@@ -1,7 +1,7 @@
 # GEO Auditor — Output Formats
 
 ## Standard Audit Output Schema (JSON)
-All audit responses must follow this strict structure:
+All audits must return this JSON structure. The `scorecard_calculations` object is mandatory and must show the exact math used to arrive at the scores based on the checklists in `SKILL.md`.
 
 ```json
 {
@@ -16,6 +16,11 @@ All audit responses must follow this strict structure:
     "factual_extraction_score": 0.0,
     "citation_probability_score": 0.0,
     "competitor_overlap_percentage": 0.0
+  },
+  "scorecard_calculations": {
+    "semantic_density_formula": "string (Step-by-step arithmetic showing deductions)",
+    "factual_extraction_formula": "string (Step-by-step arithmetic showing additions)",
+    "citation_probability_formula": "string (Step-by-step arithmetic showing additions)"
   },
   "key_vulnerabilities": [
     {
@@ -32,7 +37,7 @@ All audit responses must follow this strict structure:
       "geo_rationale": "string"
     }
   ],
-  "schema_and_structured_data_payload": "string (YAML or JSON-LD recommendation)",
+  "schema_and_structured_data_payload": "string (JSON-LD syntax markup recommendations)",
   "strategic_recommendations": [
     "string"
   ]

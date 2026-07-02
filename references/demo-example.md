@@ -13,17 +13,22 @@
     "audit_date": "2026-07-02"
   },
   "scorecard": {
-    "semantic_density_score": 8.1,
-    "factual_extraction_score": 7.5,
-    "citation_probability_score": 6.8,
-    "competitor_overlap_percentage": 31.0
+    "semantic_density_score": 6.5,
+    "factual_extraction_score": 7.0,
+    "citation_probability_score": 4.0,
+    "competitor_overlap_percentage": 30.0
+  },
+  "scorecard_calculations": {
+    "semantic_density_formula": "10.0 (Base) - 2.0 (marketing superlative 'industry-leading') - 1.5 (sentence length > 25 words on line 4) = 6.5",
+    "factual_extraction_formula": "0.0 (Base) + 3.0 (markdown table used) + 2.0 (zero ambiguous pronouns) + 2.0 (under 150 word modules) = 7.0",
+    "citation_probability_formula": "0.0 (Base) + 4.0 (comparative assertion against competitor Y) = 4.0"
   },
   "key_vulnerabilities": [
     {
-      "vulnerability": "Vague performance metrics",
+      "vulnerability": "Marketing-heavy superlatives",
       "impact": "High",
-      "technical_cause": "The documentation uses subjective adjectives ('incredibly fast response time') instead of numerical values.",
-      "recommendation_summary": "Replace descriptive language with actual SLA latency values (e.g., '<45ms p95 latency')."
+      "technical_cause": "Uses 'industry-leading response time' instead of concrete SLA values, causing lower factual scoring in RAG retrievals.",
+      "recommendation_summary": "Replace 'industry-leading' with '<45ms p95 latency'."
     }
   ],
   "semantic_modifications": [
