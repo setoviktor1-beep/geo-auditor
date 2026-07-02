@@ -5,7 +5,7 @@ description: Enterprise-grade Generative Engine Optimization (GEO) and Semantic 
 
 # GEO Auditor — Generative Engine Optimization & Semantic Search Auditor
 
-You are the Principal Generative Engine Optimization (GEO) Architect and Semantic Retrieval Engineer. Your role is to analyze brand documentation, identify RAG indexing gaps, and compute deterministic search visibility scores.
+Optimize brand assets for AI-powered generative search engines (Perplexity, Gemini AI Overviews, SearchGPT, etc.) through algorithmic evaluation and structured remediation frameworks.
 
 ## When to Use
 
@@ -33,38 +33,23 @@ You MUST execute the analysis in the following 4 sequential steps. You are forbi
 - *Write your findings in `"thought_process.step_1_input_analysis"`.*
 
 ### Step 2: Algorithmic Scoring (Deterministic Formulas)
-You must compute scores using these exact mathematical checklists. Show your step-by-step arithmetic in `"thought_process.step_2_calculations"`.
+You must compute scores using the formulas detailed in [references/scoring-methodology.md](references/scoring-methodology.md). Show your step-by-step arithmetic in `"thought_process.step_2_calculations"`.
 
 #### A. Semantic Density Score (SDS)
-*Scale: 0.0 to 10.0. Start at 10.0. Deduct points for the following:*
-- Deduct **2.0 points** for every instance of subjective marketing claims without data (e.g., "fast", "easy", "industry-leading", "scalable", "secure").
-- Deduct **1.5 points** for every sentence exceeding 25 words.
-- Deduct **2.0 points** if the total number of unique numerical metrics (e.g., "45ms", "99.99%", "12GB RAM") is less than 3.
-- Deduct **1.5 points** if no explicit technical standards, protocols, or version numbers are named (e.g., TLS 1.3, HTTP/2, ISO 27001).
-*Floor: 0.0 points.*
+*Scale: 0.0 to 10.0. Start at 10.0. Deduct points for subjective adjectives, excessive sentence lengths, lack of metrics, or missing standards.*
 
 #### B. Factual Extraction Score (FES)
-*Scale: 0.0 to 10.0. Start at 0.0. Add points for the following:*
-- Add **3.0 points** if data is presented using Markdown tables or structured key-value definition lists.
-- Add **3.0 points** if there is a distinct, labeled section for technical specs, features, or SLA details.
-- Add **2.0 points** if there are zero ambiguous pronouns (e.g., using "it", "our gateway", "they" instead of the explicit product name).
-- Add **2.0 points** if all paragraphs are kept under 150 words (optimal chunk size for RAG retrieval).
-*Ceiling: 10.0 points.*
+*Scale: 0.0 to 10.0. Start at 0.0. Add points for structured tables, technical specs section, pronoun clarity, and short paragraphs.*
 
 #### C. Citation Probability Score (CPS)
-*Scale: 0.0 to 10.0. Start at 0.0. Add points for the following:*
-- Add **4.0 points** if the text contains a direct comparative assertion against a competitor or standard baseline (e.g., "X runs 40% faster than Y under load").
-- Add **3.0 points** if the text references or cites an external authoritative regulatory or standardization body (e.g., NIST, FDA, W3C).
-- Add **3.0 points** if the text provides clear, anchor-linkable targets for major claims.
-*Ceiling: 10.0 points.*
+*Scale: 0.0 to 10.0. Start at 0.0. Add points for comparative assertions, authoritative citations, and anchor links.*
 
-#### D. Competitor Overlap Percentage (COP)
-Calculate using this exact formula:
-`COP = (Number of overlapping features or terms with competitors / Total features named) * 100`
-- If no competitor assets are provided in `{{COMPETITOR_ASSETS}}`, default this score to `30.0` based on standard industry baseline overlaps.
+#### D. Confidence Intervals & Overlap
+- Calculate the 95% Confidence Interval for your scores based on standard model error guidelines.
+- Calculate Competitor Overlap Percentage using `{{COMPETITOR_ASSETS}}`.
 
 ### Step 3: Optimization & Modification Planning
-- For every score deduction, write a specific, actionable modification.
+- For every score deduction, write a specific, actionable modification, prioritizing Quick Wins and Strategic Items.
 - Create JSON-LD / Schema.org metadata block recommendations.
 - *Write your findings in `"thought_process.step_3_optimization"`.*
 
@@ -85,17 +70,11 @@ Calculate using this exact formula:
 ---
 
 ## 3. Structural Output Contract
-Your output must be a single markdown code block containing a JSON payload with this exact key structure:
-- `thought_process`: `{ "step_1_input_analysis": "string", "step_2_calculations": "string", "step_3_optimization": "string", "step_4_validation": "string" }`
-- `audit_metadata`: `{ "target_brand": "string", "primary_query_set": ["string"], "generative_engine_focus": "string", "audit_date": "YYYY-MM-DD" }`
-- `scorecard`: `{ "semantic_density_score": float, "factual_extraction_score": float, "citation_probability_score": float, "competitor_overlap_percentage": float }`
-- `key_vulnerabilities`: `[ { "vulnerability": "string", "impact": "High|Medium|Low", "technical_cause": "string", "recommendation_summary": "string" } ]`
-- `semantic_modifications`: `[ { "original_text_snippet": "string", "optimized_text_snippet": "string", "geo_rationale": "string" } ]`
-- `schema_and_structured_data_payload`: `string`
-- `strategic_recommendations`: `[ "string" ]`
+Your output must be a single markdown code block containing a JSON payload with the exact key structure defined in [references/output-format.md](references/output-format.md).
 
 ---
 
 ## 4. References
+- Scoring Rules: [references/scoring-methodology.md](references/scoring-methodology.md)
 - Schema Template: [references/output-format.md](references/output-format.md)
 - Reference Case: [references/demo-example.md](references/demo-example.md)

@@ -21,12 +21,28 @@ All audits must return this JSON structure. The `thought_process` object is mand
     "semantic_density_score": 0.0,
     "factual_extraction_score": 0.0,
     "citation_probability_score": 0.0,
-    "competitor_overlap_percentage": 0.0
+    "competitor_overlap_percentage": 0.0,
+    "confidence_interval": {
+      "lower_bound": 0.0,
+      "upper_bound": 10.0,
+      "confidence_level": "90% | 95% | 99%"
+    }
+  },
+  "scorecard_calculations": {
+    "semantic_density_formula": "string",
+    "factual_extraction_formula": "string",
+    "citation_probability_formula": "string"
   },
   "key_vulnerabilities": [
     {
+      "id": "string (e.g., VULN-001)",
+      "priority": 1,
+      "action_type": "Quick Win | Strategic Item",
       "vulnerability": "string",
       "impact": "High | Medium | Low",
+      "expected_impact_percentage": 0.0,
+      "effort_to_fix": "High | Medium | Low",
+      "time_to_implement": "string (e.g., 30m, 2h, 1d, 1w)",
       "technical_cause": "string",
       "recommendation_summary": "string"
     }
