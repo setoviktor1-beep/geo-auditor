@@ -6,6 +6,12 @@
 
 ```json
 {
+  "thought_process": {
+    "step_1_input_analysis": "Target brand is LogiTrace. Target query: 'Best scalable cold chain logistics API'. Input text contains vague claims like 'rapid and secure transfer' but lacks specific latency and protocol definitions. Schema.org is completely missing.",
+    "step_2_calculations": "SDS: Start 10.0. Deduct 2.0 (superlative 'rapid') - 1.5 (sentence length > 25 words on line 4) = 6.5. FES: Start 0.0 + 3.0 (tables) + 2.0 (zero ambiguous pronouns) + 2.0 (under 150 words) = 7.0. CPS: Start 0.0 + 4.0 (comparative assertion against competitor Y) = 4.0.",
+    "step_3_optimization": "Create Schema.org SoftwareApplication markup. Replace 'rapid and secure' with 'response time of 32ms, AES-256 encryption'. Add comparative tabular data.",
+    "step_4_validation": "Checked JSON. Keys: thought_process, audit_metadata, scorecard, key_vulnerabilities, semantic_modifications, schema_and_structured_data_payload, strategic_recommendations. All keys present and validated."
+  },
   "audit_metadata": {
     "target_brand": "LogiTrace",
     "primary_query_set": ["Best scalable cold chain logistics API"],
@@ -18,17 +24,12 @@
     "citation_probability_score": 4.0,
     "competitor_overlap_percentage": 30.0
   },
-  "scorecard_calculations": {
-    "semantic_density_formula": "10.0 (Base) - 2.0 (marketing superlative 'industry-leading') - 1.5 (sentence length > 25 words on line 4) = 6.5",
-    "factual_extraction_formula": "0.0 (Base) + 3.0 (markdown table used) + 2.0 (zero ambiguous pronouns) + 2.0 (under 150 word modules) = 7.0",
-    "citation_probability_formula": "0.0 (Base) + 4.0 (comparative assertion against competitor Y) = 4.0"
-  },
   "key_vulnerabilities": [
     {
       "vulnerability": "Marketing-heavy superlatives",
       "impact": "High",
-      "technical_cause": "Uses 'industry-leading response time' instead of concrete SLA values, causing lower factual scoring in RAG retrievals.",
-      "recommendation_summary": "Replace 'industry-leading' with '<45ms p95 latency'."
+      "technical_cause": "Uses 'rapid and secure' instead of concrete SLA values, causing lower factual scoring in RAG retrievals.",
+      "recommendation_summary": "Replace 'rapid and secure' with '32ms average response time, AES-256 payload encryption'."
     }
   ],
   "semantic_modifications": [
